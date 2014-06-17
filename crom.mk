@@ -1,32 +1,25 @@
-# name
-PRODUCT_RELEASE_NAME := N5
+# Release name
+PRODUCT_RELEASE_NAME := hammerhead
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-# device
-$(call inherit-product-if-exists, device/lge/hammerhead/full_hammerhead.mk)
-
-# languages
-PRODUCT_LOCALES := en_US de_DE zh_CN zh_TW cs_CZ nl_BE nl_NL en_AU en_GB en_CA en_NZ en_SG fr_BE fr_CA fr_FR fr_CH de_AT de_LI de_CH it_IT it_CH ja_JP ko_KR pl_PL ru_RU es_ES ar_EG ar_IL bg_BG ca_ES hr_HR da_DK en_IN en_IE en_ZA fi_FI el_GR iw_IL hi_IN hu_HU in_ID lv_LV lt_LT nb_NO pt_BR pt_PT ro_RO sr_RS sk_SK sl_SI es_US sv_SE tl_PH th_TH tr_TR uk_UA vi_VN
-
-# phone
+# Inherit some common C-RoM stuff.
 $(call inherit-product, vendor/crom/config/common_phone.mk)
 
-# bootanimation
-PRODUCT_COPY_FILES += \
-    vendor/crom/prebuilt/common/media/xxhdpi/BOOTANIMATION-1080x1920.zip:system/media/bootanimation.zip
+# Enhanced NFC
+$(call inherit-product, vendor/crom/config/nfc_enhanced.mk)
 
-# products
+# Inherit device configuration
+$(call inherit-product, device/lge/hammerhead/full_hammerhead.mk)
+
+## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := hammerhead
-PRODUCT_BRAND := google
 PRODUCT_NAME := crom_hammerhead
+PRODUCT_BRAND := Google
 PRODUCT_MODEL := Nexus 5
 PRODUCT_MANUFACTURER := LGE
-PRODUCT_PROPERTY_OVERRIDES += ro.buildzipid=crom.hammerhead.$(shell date +%m%d%y).$(shell date +%H%M%S)
+PRODUCT_RESTRICT_VENDOR_FILES := false
 
-# overrides
-
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=occam BUILD_FINGERPRINT="fingerprint: google/hammerhead/hammerhead:4.4.2/KOT49H/937116:user/release-keys" PRIVATE_BUILD_DESC="hammerhead-user 4.4.2 KOT49H 937116 release-keys"
-
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=occam BUILD_FINGERPRINT="fingerprint: google/hammerhead/hammerhead:4.4.3/KTU84M/1158763:user/release-keys" PRIVATE_BUILD_DESC="hammerhead-user 4.4.3 KTU84M 1158763 release-keys"
